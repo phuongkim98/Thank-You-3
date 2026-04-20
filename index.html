@@ -1,4 +1,4 @@
-html
+```html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -10,11 +10,14 @@ html
 
 <style>
 html{scroll-behavior:smooth;}
+
 body{
     margin:0;
     font-family:'Segoe UI';
-    background: radial-gradient(circle,#1a1a2e,#0f0f1a);
-    color:white;
+    background-color:#fff0f6;
+    background-image: radial-gradient(#ffafcc 1px, transparent 1px);
+    background-size: 20px 20px;
+    color:#333;
 }
 
 .section{
@@ -41,25 +44,25 @@ h1,h2{margin-bottom:20px;}
     padding:12px;
     border:none;
     border-radius:12px;
-    background:linear-gradient(135deg,#9b59b6,#8e44ad);
+    background:linear-gradient(135deg,#ffafcc,#fb6f92);
     color:white;
     font-weight:bold;
     cursor:pointer;
 }
 
 .card{
-    background:#1a1a2e;
+    background:white;
     margin:10px 0;
     padding:15px;
     border-radius:15px;
     cursor:pointer;
-    border:1px solid #333;
+    border:1px solid #eee;
 }
 
 .wish{
     display:none;
     margin-top:10px;
-    color:#ccc;
+    color:#555;
 }
 
 /* TAROT */
@@ -86,18 +89,22 @@ h1,h2{margin-bottom:20px;}
 }
 
 .front{
-    background:#111;
-    box-shadow:0 0 20px #9b59b6;
+    background:#fff;
+    box-shadow:0 0 20px #ffafcc;
 }
 
 .back{
     transform:rotateY(180deg);
-    background:#000;
-    border:2px solid #9b59b6;
+    background:#fff;
+    border:2px solid #ffafcc;
     display:flex;
     flex-direction:column;
     justify-content:flex-end;
     padding:10px;
+}
+
+#meaning{
+    color:#555;
 }
 </style>
 </head>
@@ -116,7 +123,6 @@ h1,h2{margin-bottom:20px;}
 <h2>Team Trade</h2>
 
 <h3>Offline</h3>
-
 <div class="card" onclick="toggleWish(this,'Chúc chị luôn xinh ✨')">Chị Diệp<div class="wish"></div></div>
 <div class="card" onclick="toggleWish(this,'Chúc anh mãi đỉnh 😎')">Anh Tường<div class="wish"></div></div>
 <div class="card" onclick="toggleWish(this,'Luôn vui vẻ nha 😆')">Nhựt Ling<div class="wish"></div></div>
@@ -125,11 +131,9 @@ h1,h2{margin-bottom:20px;}
 <div class="card" onclick="toggleWish(this,'Làm đâu trúng đó 💸')">Nam<div class="wish"></div></div>
 
 <h3>Online</h3>
-
 <div class="card" onclick="toggleWish(this,'Online nhưng vẫn đỉnh 😎')">Mơ<div class="wish"></div></div>
 <div class="card" onclick="toggleWish(this,'Luôn nhiều năng lượng 🌟')">Chị Trân<div class="wish"></div></div>
 <div class="card" onclick="toggleWish(this,'Luôn tỏa sáng ✨')">Chị Ánh<div class="wish"></div></div>
-
 </div>
 
 <!-- ASA -->
@@ -137,7 +141,6 @@ h1,h2{margin-bottom:20px;}
 <h2>Team Asa</h2>
 
 <h3>Offline</h3>
-
 <div class="card" onclick="toggleWish(this,'Luôn chill 😌')">Chi<div class="wish"></div></div>
 <div class="card" onclick="toggleWish(this,'Nhiều năng lượng 💪')">Chị Oanh<div class="wish"></div></div>
 <div class="card" onclick="toggleWish(this,'Luôn vui 😆')">Hoài<div class="wish"></div></div>
@@ -146,11 +149,9 @@ h1,h2{margin-bottom:20px;}
 <div class="card" onclick="toggleWish(this,'Thắng lớn 💸')">Thái<div class="wish"></div></div>
 
 <h3>Online</h3>
-
 <div class="card" onclick="toggleWish(this,'Luôn xinh ✨')">Chị Mai<div class="wish"></div></div>
 <div class="card" onclick="toggleWish(this,'Luôn vui 😄')">Chị Thảo<div class="wish"></div></div>
 <div class="card" onclick="toggleWish(this,'Năng lượng 🌟')">Chị Huyền<div class="wish"></div></div>
-
 </div>
 
 <!-- TAROT -->
@@ -173,7 +174,7 @@ h1,h2{margin-bottom:20px;}
 
 <!-- END -->
 <div class="section">
-<h2>Cảm ơn mọi người 💜</h2>
+<h2>Cảm ơn mọi người 💖</h2>
 <button class="btn" onclick="boom()">Nhấn phát cuối 🎉</button>
 </div>
 
@@ -209,17 +210,16 @@ function toggleWish(el,text){
 // tarot
 function draw(){
     const data=[
-        {n:"The Salary 💸",t:"Tiền đến rồi đi",img:"https://i.imgur.com/8Km9tLL.png",c:"#2ecc71"},
-        {n:"The Deadline 💀",t:"Deadline đang tới",img:"https://i.imgur.com/jTq7GQK.png",c:"#e74c3c"},
-        {n:"The Drama 🎭",t:"Drama everywhere",img:"https://i.imgur.com/3ZQ3Z6F.png",c:"#9b59b6"},
-        {n:"The Sleep 😴",t:"Ngủ đi",img:"https://i.imgur.com/8Km9tLL.png",c:"#3498db"},
-        {n:"The Lucky 🍀",t:"Bạn hên đấy",img:"https://i.imgur.com/jTq7GQK.png",c:"#1abc9c"}
+        {n:"The Salary 💸",t:"Tiền đến rồi đi",img:"https://i.imgur.com/8Km9tLL.png",c:"#ff69b4"},
+        {n:"The Deadline 💀",t:"Deadline đang tới",img:"https://i.imgur.com/jTq7GQK.png",c:"#ff6b81"},
+        {n:"The Drama 🎭",t:"Drama everywhere",img:"https://i.imgur.com/3ZQ3Z6F.png",c:"#c77dff"},
+        {n:"The Sleep 😴",t:"Ngủ đi rồi tính tiếp",img:"https://i.imgur.com/8Km9tLL.png",c:"#90dbf4"},
+        {n:"The Lucky 🍀",t:"Bạn hên đấy 😏",img:"https://i.imgur.com/jTq7GQK.png",c:"#80ed99"}
     ];
 
     const r=data[Math.floor(Math.random()*data.length)];
 
     let card=document.getElementById("card");
-    let name=document.getElementById("cardName");
 
     document.querySelector('.front').style.background=
     `url(${r.img}) center/contain no-repeat`;
@@ -227,7 +227,7 @@ function draw(){
     card.classList.remove("flip");
 
     setTimeout(()=>{
-        name.innerText=r.n;
+        document.getElementById("cardName").innerText=r.n;
         card.classList.add("flip");
         document.getElementById("meaning").innerText=r.t;
 
@@ -244,3 +244,4 @@ function boom(){
 
 </body>
 </html>
+```
