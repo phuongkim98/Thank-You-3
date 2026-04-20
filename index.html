@@ -4,275 +4,144 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bà T nghỉ việc 😎</title>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<title>Thông điệp từ vũ trụ ✨</title>
 
 <style>
-html{scroll-behavior:smooth;}
-
 body{
-    margin:0;
     font-family:'Segoe UI';
-    background-color:#fff0f6;
-    background-image: radial-gradient(#ffafcc 1px, transparent 1px);
-    background-size: 20px 20px;
-    color:#333;
-}
-
-/* 🧸 GẤU GÓC PHẢI */
-.bear{
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    width: 120px;
-    z-index: 999;
-    pointer-events: none;
-    animation: float 4s ease-in-out infinite;
-}
-
-/* 🧸 GẤU TRÊN ĐẦU */
-.bear-top{
-    width:120px;
-    margin-bottom:10px;
-}
-
-/* animation nhẹ */
-@keyframes float{
-    0%{transform: translateY(0);}
-    50%{transform: translateY(-10px);}
-    100%{transform: translateY(0);}
-}
-
-.section{
-    padding:80px 20px;
+    background:#fff0f6;
     text-align:center;
-    max-width:700px;
-    margin:auto;
-    opacity:0;
-    transform:translateY(40px);
-    transition:0.6s;
-}
-.section.show{
-    opacity:1;
-    transform:translateY(0);
+    padding:40px;
 }
 
-h1,h2{margin-bottom:20px;}
+.page{display:none;}
+.active{display:block;}
 
-.btn{
-    display:block;
-    width:100%;
-    max-width:300px;
-    margin:10px auto;
-    padding:12px;
-    border:none;
-    border-radius:12px;
-    background:linear-gradient(135deg,#ffafcc,#fb6f92);
-    color:white;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.card{
-    background:white;
-    margin:7px 0;
-    padding:12px;
-    border-radius:12px;
-    cursor:pointer;
-    border:1px solid #eee;
-}
-
-.wish{
-    display:none;
-    margin-top:10px;
-    color:#555;
-}
-
-/* TAROT */
-.tarot-card{
-    width:180px;height:250px;
-    margin:20px auto;
-    perspective:1000px;
-}
-
-.inner{
-    width:100%;height:100%;
-    transform-style:preserve-3d;
-    transition:1s;
-    position:relative;
-}
-
-.flip .inner{transform:rotateY(180deg);}
-
-.front,.back{
-    position:absolute;
-    width:100%;height:100%;
-    border-radius:15px;
-    backface-visibility:hidden;
-}
-
-.front{
-    background:#fff;
-    box-shadow:0 0 20px #ffafcc;
-}
-
-.back{
-    transform:rotateY(180deg);
-    background:#fff;
-    border:2px solid #ffafcc;
-    display:flex;
-    flex-direction:column;
-    justify-content:flex-end;
+input{
     padding:10px;
+    border-radius:10px;
+    border:1px solid #ccc;
+    width:200px;
 }
 
-.tarot-card{
-    margin-bottom: 20px;
+button{
+    padding:10px 20px;
+    margin-top:15px;
+    border:none;
+    border-radius:10px;
+    background:#ffafcc;
+    color:white;
+    cursor:pointer;
 }
 
-#meaning{
-    margin-top: 25px;
-    line-height: 1.6;
-    max-width: 300px;
-    margin-left: auto;
-    margin-right: auto;
+.tarot{
+    margin-top:20px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🧸 GẤU GÓC -->
-<img class="bear" src="https://i.imgur.com/6R8QhJH.png">
-
-<!-- HERO -->
-<div class="section">
-<img class="bear-top" src="https://i.imgur.com/6R8QhJH.png">
-<h1>Hề Lố 😎</h1>
-<p id="countdown"></p>
-<a href="#trade"><button class="btn">Xem Team</button></a>
+<!-- PAGE 1 -->
+<div id="page1" class="page active">
+    <h2>Nhập mã nhân viên của bạn 👇</h2>
+    <input id="codeInput" placeholder="VD: NV01">
+    <br>
+    <button onclick="login()">Xác nhận</button>
+    <p id="err" style="color:red;"></p>
 </div>
 
-<!-- TRADE -->
-<div id="trade" class="section">
-<h2>Team Trade</h2>
-
-<h3>Offline</h3>
-<div class="card" onclick="toggleWish(this,'Chúc chị luôn xinh ✨')">Chị Diệp<div class="wish"></div></div>
-<div class="card" onclick="toggleWish(this,'Chúc anh mãi đỉnh 😎')">Anh Tường<div class="wish"></div></div>
-<div class="card" onclick="toggleWish(this,'Luôn vui vẻ nha 😆')">Nhựt Ling<div class="wish"></div></div>
-<div class="card" onclick="toggleWish(this,'Luôn rực rỡ ✨')">Chị Phương<div class="wish"></div></div>
-<div class="card" onclick="toggleWish(this,'Code không bug 😏')">Đức<div class="wish"></div></div>
-<div class="card" onclick="toggleWish(this,'Làm đâu trúng đó 💸')">Nam<div class="wish"></div></div>
-
-<h3>Online</h3>
-<div class="card" onclick="toggleWish(this,'Online nhưng vẫn đỉnh 😎')">Mơ<div class="wish"></div></div>
-<div class="card" onclick="toggleWish(this,'Luôn nhiều năng lượng 🌟')">Chị Trân<div class="wish"></div></div>
-<div class="card" onclick="toggleWish(this,'Luôn tỏa sáng ✨')">Chị Ánh<div class="wish"></div></div>
+<!-- PAGE 2 -->
+<div id="page2" class="page">
+    <h2 id="name"></h2>
+    <button onclick="go('page3')">Nhận thông điệp 🔮</button>
 </div>
 
-<!-- ASA -->
-<div class="section">
-<h2>Team Asa</h2>
+<!-- PAGE 3 -->
+<div id="page3" class="page">
+    <h2>Lá bài của bạn</h2>
 
-<h3>Offline</h3>
-<div class="card" onclick="toggleWish(this,'Luôn chill 😌')">Chi<div class="wish"></div></div>
-<div class="card" onclick="toggleWish(this,'Nhiều năng lượng 💪')">Chị Oanh<div class="wish"></div></div>
-<div class="card" onclick="toggleWish(this,'Luôn vui 😆')">Hoài<div class="wish"></div></div>
-<div class="card" onclick="toggleWish(this,'Rực rỡ ✨')">Chị Quý<div class="wish"></div></div>
-<div class="card" onclick="toggleWish(this,'Phong độ 😎')">Anh Quang<div class="wish"></div></div>
-<div class="card" onclick="toggleWish(this,'Thắng lớn 💸')">Thái<div class="wish"></div></div>
-
-<h3>Online</h3>
-<div class="card" onclick="toggleWish(this,'Luôn xinh ✨')">Chị Mai<div class="wish"></div></div>
-<div class="card" onclick="toggleWish(this,'Luôn vui 😄')">Chị Thảo<div class="wish"></div></div>
-<div class="card" onclick="toggleWish(this,'Năng lượng 🌟')">Chị Huyền<div class="wish"></div></div>
-</div>
-
-<!-- TAROT -->
-<div class="section">
-<h2>🔮 Lời tiên tri</h2>
-
-<button class="btn" onclick="draw()">Rút bài</button>
-
-<div id="card" class="tarot-card">
-    <div class="inner">
-        <div class="front"></div>
-        <div class="back">
-            <div id="cardName"></div>
-        </div>
+    <div class="tarot">
+        <img id="img" width="200">
+        <p id="msg"></p>
     </div>
+
+    <button onclick="go('page4')">Tiếp tục</button>
 </div>
 
-<p id="meaning"></p>
+<!-- PAGE 4 -->
+<div id="page4" class="page">
+    <h2>Cảm ơn mọi người 💖</h2>
 </div>
-
-<!-- END -->
-<div class="section">
-<h2>Cảm ơn mọi người vừa qua đã giúp em/chị/tớ rất nhiều. Chúc mọi người luôn vui vẻ, hạnh phúc và đạt được mọi thành công trong cuộc sống💖</h2>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <script>
 
-// scroll animation
-const secs=document.querySelectorAll('.section');
-window.addEventListener('scroll',()=>{
-    secs.forEach(s=>{
-        if(s.getBoundingClientRect().top<window.innerHeight-100){
-            s.classList.add('show');
-        }
-    });
-});
-
-// countdown
-const end=new Date("2026-04-28").getTime();
-setInterval(()=>{
-    let d=end-new Date().getTime();
-    document.getElementById('countdown').innerText=
-    "Còn "+Math.floor(d/86400000)+" ngày là nghỉ 😏";
-},1000);
-
-// wish toggle
-function toggleWish(el,text){
-    let w=el.querySelector('.wish');
-    w.style.display = w.style.display==="block"?"none":"block";
-    w.innerText=text;
-}
+// danh sách mã
+const users = {
+    "NV01":"Chị Diệp",
+    "NV02":"Anh Tường",
+    "NV03":"Nhựt Ling",
+    "NV04":"Chị Phương",
+    "NV05":"Đức",
+    "NV06":"Nam"
+};
 
 // tarot
-function draw(){
-    const data=[
-        {n:"The Salary 💸",t:"Tiền đến rồi đi",img:"https://i.imgur.com/8Km9tLL.png",c:"#ff69b4"},
-        {n:"The Deadline 💀",t:"Deadline đang tới",img:"https://i.imgur.com/jTq7GQK.png",c:"#ff6b81"},
-        {n:"The Drama 🎭",t:"Drama everywhere",img:"https://i.imgur.com/3ZQ3Z6F.png",c:"#c77dff"},
-        {n:"The Sleep 😴",t:"Ngủ đi rồi tính tiếp",img:"https://i.imgur.com/8Km9tLL.png",c:"#90dbf4"},
-        {n:"The Lucky 🍀",t:"Bạn hên đấy 😏",img:"https://i.imgur.com/jTq7GQK.png",c:"#80ed99"}
-    ];
+const tarot = [
+    {img:"https://i.imgur.com/8Km9tLL.png", msg:"Bạn sắp giàu 😏"},
+    {img:"https://i.imgur.com/jTq7GQK.png", msg:"Deadline tới 😭"},
+    {img:"https://i.imgur.com/3ZQ3Z6F.png", msg:"Drama né bạn"},
+];
 
-    const r=data[Math.floor(Math.random()*data.length)];
+// check đã login chưa
+let saved = localStorage.getItem("employee");
 
-    let card=document.getElementById("card");
-
-    document.querySelector('.front').style.background=
-    `url(${r.img}) center/contain no-repeat`;
-
-    card.classList.remove("flip");
-
-    setTimeout(()=>{
-        document.getElementById("cardName").innerText=r.n;
-        card.classList.add("flip");
-        document.getElementById("meaning").innerText=r.t;
-
-        confetti({particleCount:120,spread:80,colors:[r.c]});
-    },300);
+if(saved){
+    loadUser(saved);
 }
 
-// end confetti
-function boom(){
-    confetti({particleCount:200,spread:120});
+// login
+function login(){
+    let code = document.getElementById("codeInput").value.trim();
+
+    if(localStorage.getItem("employee")){
+        // đã có rồi thì không cho đổi
+        if(code !== localStorage.getItem("employee")){
+            document.getElementById("err").innerText="Bạn chỉ được xem của mình thôi 😏";
+            return;
+        }
+    }
+
+    if(users[code]){
+        localStorage.setItem("employee", code);
+        loadUser(code);
+    }else{
+        document.getElementById("err").innerText="Sai mã rồi 😭";
+    }
+}
+
+// load user
+function loadUser(code){
+    document.getElementById("name").innerText="Hello " + users[code] + " 👋";
+    go('page2');
+}
+
+// chuyển page
+function go(id){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+
+    if(id==="page3"){
+        drawTarot();
+    }
+}
+
+// random tarot
+function drawTarot(){
+    let r = tarot[Math.floor(Math.random()*tarot.length)];
+
+    document.getElementById("img").src = r.img;
+    document.getElementById("msg").innerText = r.msg;
 }
 
 </script>
