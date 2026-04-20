@@ -20,6 +20,30 @@ body{
     color:#333;
 }
 
+/* 🧸 GẤU GÓC PHẢI */
+.bear{
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 120px;
+    z-index: 999;
+    pointer-events: none;
+    animation: float 4s ease-in-out infinite;
+}
+
+/* 🧸 GẤU TRÊN ĐẦU */
+.bear-top{
+    width:120px;
+    margin-bottom:10px;
+}
+
+/* animation nhẹ */
+@keyframes float{
+    0%{transform: translateY(0);}
+    50%{transform: translateY(-10px);}
+    100%{transform: translateY(0);}
+}
+
 .section{
     padding:80px 20px;
     text-align:center;
@@ -111,8 +135,12 @@ h1,h2{margin-bottom:20px;}
 
 <body>
 
+<!-- 🧸 GẤU GÓC -->
+<img class="bear" src="https://i.imgur.com/6R8QhJH.png">
+
 <!-- HERO -->
 <div class="section">
+<img class="bear-top" src="https://i.imgur.com/6R8QhJH.png">
 <h1>Bà T nghỉ việc 😎</h1>
 <p id="countdown"></p>
 <a href="#trade"><button class="btn">Xem Team</button></a>
