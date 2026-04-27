@@ -36,6 +36,12 @@ button{
 .tarot{
     margin-top:20px;
 }
+
+#wishText{
+    margin-top:15px;
+    color:#555;
+    line-height:1.6;
+}
 </style>
 </head>
 
@@ -44,7 +50,7 @@ button{
 <!-- PAGE 1 -->
 <div id="page1" class="page active">
     <h2>Nhập mã nhân viên của bạn 👇</h2>
-    <input id="codeInput" placeholder="VD: NV01">
+    <input id="codeInput" placeholder="VD: 156">
     <br>
     <button onclick="login()">Xác nhận</button>
     <p id="err" style="color:red;"></p>
@@ -53,6 +59,7 @@ button{
 <!-- PAGE 2 -->
 <div id="page2" class="page">
     <h2 id="name"></h2>
+    <p id="wishText"></p>
     <button onclick="go('page3')">Nhận thông điệp 🔮</button>
 </div>
 
@@ -75,7 +82,7 @@ button{
 
 <script>
 
-// danh sách mã
+// USERS
 const users = {
     "156":"Chị Diệp",
     "8644":"Anh Tường",
@@ -83,51 +90,41 @@ const users = {
     "11732":"Chị Phương",
     "11585":"Đức",
     "11659":"Nam",
-    "10154":"Hoài",
-    "2705":"Chị Quý",
-    "4943":"Chị Oanh",
-    "7172":"Chị Mai",
-    "10154":"Chị Thảo",
-    "4943":"Chị Huyền",
-    "7172":"Mơ",
-    "7172":"Thái",
-    "7172":"Chị Trân",
     "10154":"Chị Ánh",
     "2705":"Anh Quang",
+    "4943":"Chị Huyền",
+    "7172":"Chị Trân",
     "CN":"Công Túa",
     "HH":"Mít ren Phú Thọ",
     "LH":"Bà chủ vựa dừa tương lai",
-    "6352":"Chi",
+    "6352":"Chi"
 };
 
-// tarot
+// TAROT
 const data = [
  {img:"https://hoctarot.com/wp-content/uploads/2020/01/maj19.jpg", msg:"Bạn đang toả sáng theo cách riêng, cứ thế mà phát huy ✨"},
  {img:"https://hoctarot.com/wp-content/uploads/2020/01/maj17.jpg", msg:"Một cơ hội tốt đang tới gần, nhớ nắm cho chắc nha 💰"},
  {img:"https://hoctarot.com/wp-content/uploads/2020/01/pents01.jpg", msg:"Hôm nay vibe của bạn rất ổn, đi đâu cũng dễ gặp may 😏"},
- {img:"https://hoctarot.com/wp-content/uploads/2020/01/cups13.jpg", msg:"Có người đang âm thầm quý bạn đó, không phải tự nhiên đâu nha 👀"},
+ {img:"https://hoctarot.com/wp-content/uploads/2020/01/cups13.jpg", msg:"Có người đang âm thầm quý bạn đó 👀"},
  {img:"https://hoctarot.com/wp-content/uploads/2020/01/wands12.jpg", msg:"Làm cái bạn đang nghĩ đi, khả năng cao là sẽ ổn áp 🔥"},
- {img:"https://hoctarot.com/wp-content/uploads/2020/01/cups10.jpg", msg:"Một niềm vui nhỏ đang trên đường tới, cứ chờ đi 🤡"},
- {img:"https://hoctarot.com/wp-content/uploads/2020/01/cups11.jpg", msg:"Bạn đang ngày càng xịn hơn mà chưa nhận ra đó 💎"},
- {img:"https://hoctarot.com/wp-content/uploads/2020/01/maj10.jpg", msg:"Vận may đang quay lại phía bạn, tới công chuyện rồi 🎡"},
- {img:"https://hoctarot.com/wp-content/uploads/2020/01/pents09.jpg", msg:"Mọi thứ đang đi đúng hướng, đừng lo nhiều nữa nha 🌈"},
- {img:"https://hoctarot.com/wp-content/uploads/2020/01/maj00.jpg", msg:"Cứ thử đi, đôi khi liều một chút lại hay 😏"}
-];
+ {img:"https://hoctarot.com/wp-content/uploads/2020/01/cups10.jpg", msg:"Một niềm vui nhỏ đang trên đường tới 🤡"},
+ {img:"https://hoctarot.com/wp-content/uploads/2020/01/cups11.jpg", msg:"Bạn đang ngày càng xịn hơn đó 💎"},
+ {img:"https://hoctarot.com/wp-content/uploads/2020/01/maj10.jpg", msg:"Vận may đang quay lại phía bạn 🎡"},
+ {img:"https://hoctarot.com/wp-content/uploads/2020/01/pents09.jpg", msg:"Mọi thứ đang đi đúng hướng 🌈"},
+ {img:"https://hoctarot.com/wp-content/uploads/2020/01/maj00.jpg", msg:"Cứ thử đi, đôi khi liều lại hay 😏"}
 ];
 
-// check đã login chưa
+// AUTO LOGIN
 let saved = localStorage.getItem("employee");
-
 if(saved){
     loadUser(saved);
 }
 
-// login
+// LOGIN
 function login(){
     let code = document.getElementById("codeInput").value.trim();
 
     if(localStorage.getItem("employee")){
-        // đã có rồi thì không cho đổi
         if(code !== localStorage.getItem("employee")){
             document.getElementById("err").innerText="Bạn chỉ được xem của mình thôi 😏";
             return;
@@ -142,13 +139,43 @@ function login(){
     }
 }
 
-// load user
+// TYPE EFFECT
+function typeText(text, elementId){
+    let i = 0;
+    let el = document.getElementById(elementId);
+    el.innerText = "";
+
+    let interval = setInterval(()=>{
+        el.innerText += text.charAt(i);
+        i++;
+        if(i >= text.length) clearInterval(interval);
+    }, 20);
+}
+
+// LOAD USER + WISH
 function loadUser(code){
-    document.getElementById("name").innerText="Hello " + users[code] + " 👋";
+    document.getElementById("name").innerText = "Hello " + users[code] + " 👋";
+
+    const wishes = [
+        "Thật sự cảm ơn bạn vì đã đồng hành trong khoảng thời gian vừa rồi. Có thể không phải lúc nào cũng nói ra, nhưng sự có mặt của bạn làm mọi thứ dễ chịu hơn rất nhiều. Mong là thời gian tới bạn sẽ gặp thật nhiều điều tốt đẹp, vừa vui vừa may mắn, kiểu 'auto ổn áp' luôn 😏✨",
+
+        "Làm việc cùng bạn là một trải nghiệm rất đáng nhớ. Dù có lúc bận rộn hay hơi stress, nhưng vẫn có những khoảnh khắc rất vui. Chúc bạn sắp tới lúc nào cũng nhiều năng lượng tích cực, việc đến tay là xử gọn, tiền đến là giữ được nha 💰😆",
+
+        "Bạn là kiểu người mà càng tiếp xúc càng thấy dễ quý. Hy vọng hành trình phía trước của bạn sẽ thật suôn sẻ, gặp đúng người, đúng việc, và đúng thời điểm. Và nhớ là bạn đang làm tốt hơn bạn nghĩ rất nhiều đó 💖",
+
+        "Cảm ơn bạn vì đã là một phần của hành trình này. Có thể mỗi người một hướng, nhưng những gì đã cùng nhau trải qua vẫn rất đáng nhớ. Chúc bạn phía trước thật nhiều cơ hội xịn xò, làm đâu trúng đó, kiểu 'vũ trụ chống lưng' luôn 🌈",
+
+        "Không phải lúc nào cũng nói ra, nhưng bạn thực sự là một mảnh ghép quan trọng. Mong là sau này dù ở đâu, bạn vẫn giữ được vibe tích cực này. Và biết đâu một ngày đẹp trời, bạn nhìn lại sẽ thấy: à, mình cũng từng rất ổn áp 😎✨"
+    ];
+
+    let randomWish = wishes[Math.floor(Math.random()*wishes.length)];
+
+    typeText(randomWish, "wishText");
+
     go('page2');
 }
 
-// chuyển page
+// NAV
 function go(id){
     document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
     document.getElementById(id).classList.add('active');
@@ -158,9 +185,9 @@ function go(id){
     }
 }
 
-// random tarot
+// TAROT
 function drawTarot(){
-    let r = tarot[Math.floor(Math.random()*tarot.length)];
+    let r = data[Math.floor(Math.random()*data.length)];
 
     document.getElementById("img").src = r.img;
     document.getElementById("msg").innerText = r.msg;
