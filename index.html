@@ -38,9 +38,14 @@ button{
 }
 
 #wishText{
-    margin-top:15px;
+    margin-top:20px;
+    line-height:1.7;
     color:#555;
-    line-height:1.6;
+    white-space: pre-wrap;   /* 👈 cho xuống dòng */
+    word-break: break-word;  /* 👈 tránh tràn chữ */
+    max-width:500px;
+    margin-left:auto;
+    margin-right:auto;
 }
 </style>
 </head>
@@ -152,24 +157,37 @@ function typeText(text, elementId){
     }, 20);
 }
 
-// LOAD USER + WISH
+// LOAD USER + WISH (🔥 đã sửa text chuẩn có khoảng cách)
 function loadUser(code){
     document.getElementById("name").innerText = "Hello " + users[code] + " 👋";
 
     const wishes = [
-        "Thật sự cảm ơn bạn vì đã đồng hành trong khoảng thời gian vừa rồi. Có thể không phải lúc nào cũng nói ra, nhưng sự có mặt của bạn làm mọi thứ dễ chịu hơn rất nhiều. Mong là thời gian tới bạn sẽ gặp thật nhiều điều tốt đẹp, vừa vui vừa may mắn, kiểu 'auto ổn áp' luôn 😏✨",
+`Thật sự cảm ơn bạn vì đã đồng hành trong khoảng thời gian vừa rồi.
 
-        "Làm việc cùng bạn là một trải nghiệm rất đáng nhớ. Dù có lúc bận rộn hay hơi stress, nhưng vẫn có những khoảnh khắc rất vui. Chúc bạn sắp tới lúc nào cũng nhiều năng lượng tích cực, việc đến tay là xử gọn, tiền đến là giữ được nha 💰😆",
+Có thể không phải lúc nào cũng nói ra, nhưng sự có mặt của bạn đã làm mọi thứ dễ chịu hơn rất nhiều.
 
-        "Bạn là kiểu người mà càng tiếp xúc càng thấy dễ quý. Hy vọng hành trình phía trước của bạn sẽ thật suôn sẻ, gặp đúng người, đúng việc, và đúng thời điểm. Và nhớ là bạn đang làm tốt hơn bạn nghĩ rất nhiều đó 💖",
+Mong là thời gian tới bạn sẽ gặp thật nhiều điều tốt đẹp, vừa vui vừa may mắn 😌✨`,
 
-        "Cảm ơn bạn vì đã là một phần của hành trình này. Có thể mỗi người một hướng, nhưng những gì đã cùng nhau trải qua vẫn rất đáng nhớ. Chúc bạn phía trước thật nhiều cơ hội xịn xò, làm đâu trúng đó, kiểu 'vũ trụ chống lưng' luôn 🌈",
+`Làm việc cùng bạn là một trải nghiệm rất đáng nhớ.
 
-        "Không phải lúc nào cũng nói ra, nhưng bạn thực sự là một mảnh ghép quan trọng. Mong là sau này dù ở đâu, bạn vẫn giữ được vibe tích cực này. Và biết đâu một ngày đẹp trời, bạn nhìn lại sẽ thấy: à, mình cũng từng rất ổn áp 😎✨"
+Dù có lúc bận rộn hay hơi stress, nhưng vẫn có những khoảnh khắc rất vui.
+
+Chúc bạn lúc nào cũng nhiều năng lượng tích cực, việc đến tay là xử gọn 💰😆`,
+
+`Bạn là kiểu người mà càng tiếp xúc càng thấy dễ quý.
+
+Hy vọng hành trình phía trước của bạn sẽ thật suôn sẻ, gặp đúng người, đúng việc, đúng thời điểm.
+
+Bạn đang làm tốt hơn bạn nghĩ rất nhiều đó 💖`,
+
+`Cảm ơn bạn vì đã là một phần của hành trình này.
+
+Có thể mỗi người sẽ đi một hướng, nhưng những gì đã cùng nhau trải qua vẫn rất đáng nhớ.
+
+Chúc bạn phía trước thật nhiều cơ hội xịn xò 🌈`
     ];
 
     let randomWish = wishes[Math.floor(Math.random()*wishes.length)];
-
     typeText(randomWish, "wishText");
 
     go('page2');
