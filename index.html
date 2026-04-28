@@ -33,17 +33,15 @@ button{
     cursor:pointer;
 }
 
-.tarot{
-    margin-top:20px;
-}
+.tarot{margin-top:20px;}
 
 #wishText{
     margin-top:20px;
     line-height:1.7;
     color:#555;
-    white-space: pre-wrap;   /* 👈 cho xuống dòng */
-    word-break: break-word;  /* 👈 tránh tràn chữ */
-    max-width:500px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-width:600px;
     margin-left:auto;
     margin-right:auto;
 }
@@ -71,12 +69,10 @@ button{
 <!-- PAGE 3 -->
 <div id="page3" class="page">
     <h2>Lá bài của bạn</h2>
-
     <div class="tarot">
         <img id="img" width="200">
         <p id="msg"></p>
     </div>
-
     <button onclick="go('page4')">Tiếp tục</button>
 </div>
 
@@ -89,34 +85,73 @@ button{
 
 // USERS
 const users = {
-    "156":"Chị Diệp",
-    "8644":"Anh Tường",
-    "11079":"Quàng Thượng",
-    "11732":"Chị Phương",
-    "11585":"Đức",
-    "11659":"Nam",
-    "10154":"Chị Ánh",
-    "2705":"Anh Quang",
-    "4943":"Chị Huyền",
-    "7172":"Chị Trân",
-    "CN":"Công Túa",
-    "HH":"Mít ren Phú Thọ",
-    "LH":"Bà chủ vựa dừa tương lai",
-    "6352":"Chi"
+"156":"Chị Diệp",
+"8644":"Anh Tường",
+"11079":"Quàng Thượng",
+"11732":"Chị Phương",
+"11585":"Đức",
+"11659":"Nam",
+"10154":"Hoài",
+"2705":"Chị Quý",
+"4943":"Chị Oanh",
+"7172":"Chị Mai",
+"7195":"Mơ",
+"10598":"Thái",
+"7164":"Chị Trân",
+"6622":"Chị Thảo",
+"8340":"Chị Ánh",
+"7334":"Anh Quang",
+"6352":"Chi",
+"7773":"Chị Huyền"
+};
+
+// 🎯 WISH FULL
+const wishes = {
+
+"156": `Hello chị Diệp. Chị em mình cũng đã làm việc với nhau nhiều project nên cũng không còn lạ lẫm gì nữa chị nhỉ ^^. Em cảm ơn chị Diệp vì những lúc em mắc lỗi sai, chị đã nhẹ nhàng chỉ bảo em hoặc có thể là flag inbox kín. Thật sự lúc đầu mới gặp chị em tưởng chị Diệp tầm 92 mà còn là mấy chị lắm tiền chưa lấy chồng cơ nhưng hóa ra em đã nhầm 🤣 vì chị kết hôn còn sớm hơn em nghĩ. Em cũng không biết nói gì hơn, chỉ mong rằng mọi dự định, kế hoạch của chị sẽ luôn suôn sẻ, đầu xuôi đuôi lọt và chị mãi luôn trẻ trung, xinh đẹp như thứ mà chị vốn có chị nhé`,
+
+"8644": `Hello anh Tường, người đàn ông có tuổi thứ nhất của nhóm. Qua quá trình làm việc em có vài từ nhận xét với anh như sau: rất nhây, hiền từ với đàn em báo. Thật sự là sau lần nhận xét cuối năm anh bảo là em hơi trầm mà đúng là em trầm thật vì em sợ là em sa lầy vào là em khó thoát ra lắm 🤣 xin lỗi anh vì những lần call project toàn để anh độc thoại nội tâm vì cơ bản là em nói anh không có nghe thấy. Dù sao thì cũng cảm ơn anh đã dẫn dắt đứa em báo này trong thời gian qua, chúc anh ngày nào cũng là ngày nở hoa, tháng nào cũng là tháng kết trái, năm nào cũng là năm hái quả ngọt, và đặc biệt là năm nay được công ty đầu tư cho vé máy bay đi ăn year end party ngoài Hà Nội anh nhé 😁`,
+
+"7164": `Hello chị Trân, em thì chưa có nhiều cơ hội được làm việc trực tiếp với chị Trân cũng như các member online khác nhưng mỗi lần làm việc với chị em cảm thấy yên tâm hẳn. Chị như một người chị dẫn dắt đàn em thơ vậy đó. Em cũng không biết nói gì hơn, chúc cho mọi mục tiêu, dự định của chị đều đạt được như chị mong muốn chị nhé`,
+
+"7773": `Hello chị Huyền. Tuy không làm việc với chị nhiều nhưng em thấy chị là người rất cẩn thận và tỉ mỉ trong công việc. Em chúc chị luôn giữ vững phong độ đó và có thể tiến xa ở những vị trí cao hơn chị nhé`,
+
+"4943": `Hello chị Oanh. Phải nói rằng ấn tượng lúc đầu gặp chị là em cũng hơi rén vì thấy chị cũng khá khó tính. Nhưng làm việc lâu với chị em thấy chị cũng rất là ổn, chỉ là cách bày tỏ của chị hơi lạ so với tính cách của em mà may quá là em cũng sớm thích nghi được 😁 qua lần đi ăn với team em đã hiểu được hóa ra đằng sau sự mạnh mẽ ấy cũng chất chứa nỗi niềm. Mỗi người đều có thế mạnh và vẻ đẹp riêng. Người ta bảo chỉ cần một người khen mình đẹp thì mình sẽ đẹp. Vậy là đủ. Và em tin là chị cũng sẽ sớm tìm được một nửa đời mình dù hiện tại chính chị đôi khi đang chối bỏ điều đó. Nhưng mình phải có niềm tin thì mọi thứ mới thành hiện thực được chị ạ. Em chúc chị mọi điều may mắn, sớm có người nâng khăn sửa túi để không phải than ế nữa nhé chị`,
+
+"2705": `Hello chị Quý, người chị hiền phải gọi là nhất team. Nhiều khi em nghĩ chị Quý cũng nhịn giỏi thật đấy vì nếu là em thì em cũng không biết được 🤣 em chúc chị năm nay sớm có hỷ sự, tiền tài tấn tới, mọi dự định đều suôn sẻ thuận lợi chị nhé`,
+
+"8340": `Hello chị Ánh. Lần đầu tiên gặp chị em thấy chị như vợ tổng tài vậy đó. Nhìn nó sang mà khó diễn tả. Chúc chị luôn may mắn và thành công trên con đường mà mình lựa chọn chị nhé`,
+
+"7195": `Hello Mơ. Lúc mới gặp chị mà em không tưởng tượng được cái vibe của chị nó khác so với avatar trên Discord thế, bảo sao Linh cứ khen chị xinh suốt 😁 chúc chị luôn vui vẻ, xinh đẹp và ngày càng thành công, hạnh phúc hơn nhé`,
+
+"6622": `Hello chị Thảo. Chị là người để lại cho em ấn tượng là auto like và ít khi bày tỏ cảm xúc nào khác 😁 em chúc chị luôn vui vẻ, thành công trong cuộc sống chị nhé`,
+
+"7172": `Hello chị Mai. Thật sự là nhiều khi làm việc với chị Mai em cũng hơi rén mà đôi khi lại thấy chị rất dễ chịu. Em chúc chị luôn vui vẻ, hạnh phúc và thăng tiến xa hơn nữa trên con đường sự nghiệp chị nhé`,
+
+"6352": `Hello Chi, leader của team. Chị biết làm người đứng đầu team sẽ có trách nhiệm cao và nhiều lúc công việc sẽ khiến em căng thẳng, nhưng hy vọng sau này em sẽ cười nhiều hơn vì khi em cười nhìn em hiền và dễ chịu hơn rất nhiều. Như vậy chị cảm giác tinh thần của member cũng thoải mái và dễ chia sẻ hơn (à đó là cảm nhận của riêng chị thôi). Cái nào tốt thì mình phát huy chứ nhỉ. Hehe. Chúc Chi luôn hoàn thành xuất sắc mọi nhiệm vụ cũng như tiến xa hơn trên bước đường sự nghiệp sắp tới nhé`,
+
+"11079": `Hello Quàng Thượng. Cũng thật là ấn tượng khi gặp một bạn có thể nảy số nói chuyện một cách thoải mái như em, HH và CN. Thật sự là được chơi với ba đứa là điều may mắn đối với chị. Tuy bọn em có nhỏ tuổi hơn nhưng chính chị cũng học được ở các em rất nhiều điều. Chúc Quàng Thượng sẽ sớm tìm được một nửa yêu thương, một người nâng khăn sửa túi, sẵn sàng làm đầy ví tiền của em mỗi ngày và đặc biệt hơn là gia trưởng hơn con đàn bà ấy là chị để em có thể dựa vào nhưng mà không bị thao túng. Hy vọng em cũng sẽ tìm được đúng hướng cho định hướng công việc vì biết đâu chính em lại gặp được người ấy trong công việc thì sao`,
+
+"11659": `Hello Nam. Tuy em là người mới nhưng chị nhìn thấy được sự nghiêm túc trong công việc của em. Hy vọng em vẫn luôn giữ vững tinh thần ấy và có thể học hỏi được nhiều hơn khi làm việc tại công ty nhé`,
+
+"11585": `Hello Đức. Chị biết là tuy em đôi khi có kêu ca trong công việc nhưng mà em vẫn làm, dù đó có phải điều em muốn hay không 🤣 thôi thì chúc em sẽ luôn có tinh thần thép để cống hiến cho công ty khi còn làm việc ở đây. Và hy vọng em sẽ sớm tìm được công việc phù hợp với định hướng của em trong tương lai nhé`,
+
+"7334": `Hello anh Quang. Tuy không tương tác trong công việc với anh nhiều nhưng em thấy anh cũng là người giúp đỡ nhiệt tình trong công việc khi cần. Chúc anh nhiều sức khỏe và thành công nhé ạ`,
+
+"10154": `Hello Hoài. Chị rất ấn tượng về tình yêu thời thanh mai trúc mã của em qua lời chị Oanh kể dù chị cũng không biết sự thật là bao nhiêu phần trăm. Hehe. Chị nghĩ là chị có ước cũng không thành được vì chị có quen đối tác nào từ nhỏ đâu 🤣 dù sao thì chúc Hoài sẽ luôn gặt hái được nhiều thành công trên con đường công việc, học tập cũng như tình yêu nhé em`,
+
+"10598": `Hello Thái, dù chị không biết rõ về em như thế nào nhưng nói như HH là người đàn ông có ánh mắt biết nói. Chúc em sẽ luôn thành công trên con đường mà mình lựa chọn và hơn hết là nếu Linh có làm gì báo em thì hy vọng em sẽ nhẹ nhàng với em ấy dù chị biết em cũng không cản được NL đâu 🤣`,
+
+"11732": `Hello chị Phương. Tuy em chưa làm việc với chị lần nào nhưng em thấy chị là người ghi chép rất tốt. Em hy vọng quãng thời gian làm việc cùng team sẽ giúp chị có được nhiều kinh nghiệm bổ ích cũng như kiến thức cần thiết cho con đường sự nghiệp của chị nhé ạ ^^`
 };
 
 // TAROT
 const data = [
- {img:"https://hoctarot.com/wp-content/uploads/2020/01/maj19.jpg", msg:"Bạn đang toả sáng theo cách riêng, cứ thế mà phát huy ✨"},
- {img:"https://hoctarot.com/wp-content/uploads/2020/01/maj17.jpg", msg:"Một cơ hội tốt đang tới gần, nhớ nắm cho chắc nha 💰"},
- {img:"https://hoctarot.com/wp-content/uploads/2020/01/pents01.jpg", msg:"Hôm nay vibe của bạn rất ổn, đi đâu cũng dễ gặp may 😏"},
- {img:"https://hoctarot.com/wp-content/uploads/2020/01/cups13.jpg", msg:"Có người đang âm thầm quý bạn đó 👀"},
- {img:"https://hoctarot.com/wp-content/uploads/2020/01/wands12.jpg", msg:"Làm cái bạn đang nghĩ đi, khả năng cao là sẽ ổn áp 🔥"},
- {img:"https://hoctarot.com/wp-content/uploads/2020/01/cups10.jpg", msg:"Một niềm vui nhỏ đang trên đường tới 🤡"},
- {img:"https://hoctarot.com/wp-content/uploads/2020/01/cups11.jpg", msg:"Bạn đang ngày càng xịn hơn đó 💎"},
- {img:"https://hoctarot.com/wp-content/uploads/2020/01/maj10.jpg", msg:"Vận may đang quay lại phía bạn 🎡"},
- {img:"https://hoctarot.com/wp-content/uploads/2020/01/pents09.jpg", msg:"Mọi thứ đang đi đúng hướng 🌈"},
- {img:"https://hoctarot.com/wp-content/uploads/2020/01/maj00.jpg", msg:"Cứ thử đi, đôi khi liều lại hay 😏"}
+ {img:"https://hoctarot.com/wp-content/uploads/2020/01/maj19.jpg", msg:"Bạn đang toả sáng ✨"},
+ {img:"https://hoctarot.com/wp-content/uploads/2020/01/maj17.jpg", msg:"Cơ hội đang tới 💰"},
+ {img:"https://hoctarot.com/wp-content/uploads/2020/01/pents01.jpg", msg:"Hôm nay bạn rất ổn 😏"},
+ {img:"https://hoctarot.com/wp-content/uploads/2020/01/cups13.jpg", msg:"Có người để ý bạn 👀"},
+ {img:"https://hoctarot.com/wp-content/uploads/2020/01/wands12.jpg", msg:"Cứ làm đi 🔥"},
 ];
 
 // AUTO LOGIN
@@ -144,52 +179,22 @@ function login(){
     }
 }
 
-// TYPE EFFECT
-function typeText(text, elementId){
-    let i = 0;
-    let el = document.getElementById(elementId);
-    el.innerText = "";
-
-    let interval = setInterval(()=>{
-        el.innerText += text.charAt(i);
+// TYPE TEXT
+function typeText(text, id){
+    let i=0;
+    let el=document.getElementById(id);
+    el.innerText="";
+    let interval=setInterval(()=>{
+        el.innerText+=text.charAt(i);
         i++;
-        if(i >= text.length) clearInterval(interval);
-    }, 20);
+        if(i>=text.length) clearInterval(interval);
+    },15);
 }
 
-// LOAD USER + WISH (🔥 đã sửa text chuẩn có khoảng cách)
+// LOAD USER
 function loadUser(code){
-    document.getElementById("name").innerText = "Hello " + users[code] + " 👋";
-
-    const wishes = [
-`Thật sự cảm ơn bạn vì đã đồng hành trong khoảng thời gian vừa rồi.
-
-Có thể không phải lúc nào cũng nói ra, nhưng sự có mặt của bạn đã làm mọi thứ dễ chịu hơn rất nhiều.
-
-Mong là thời gian tới bạn sẽ gặp thật nhiều điều tốt đẹp, vừa vui vừa may mắn 😌✨`,
-
-`Làm việc cùng bạn là một trải nghiệm rất đáng nhớ.
-
-Dù có lúc bận rộn hay hơi stress, nhưng vẫn có những khoảnh khắc rất vui.
-
-Chúc bạn lúc nào cũng nhiều năng lượng tích cực, việc đến tay là xử gọn 💰😆`,
-
-`Bạn là kiểu người mà càng tiếp xúc càng thấy dễ quý.
-
-Hy vọng hành trình phía trước của bạn sẽ thật suôn sẻ, gặp đúng người, đúng việc, đúng thời điểm.
-
-Bạn đang làm tốt hơn bạn nghĩ rất nhiều đó 💖`,
-
-`Cảm ơn bạn vì đã là một phần của hành trình này.
-
-Có thể mỗi người sẽ đi một hướng, nhưng những gì đã cùng nhau trải qua vẫn rất đáng nhớ.
-
-Chúc bạn phía trước thật nhiều cơ hội xịn xò 🌈`
-    ];
-
-    let randomWish = wishes[Math.floor(Math.random()*wishes.length)];
-    typeText(randomWish, "wishText");
-
+    document.getElementById("name").innerText="Hello "+users[code]+" 👋";
+    typeText(wishes[code], "wishText");
     go('page2');
 }
 
@@ -198,17 +203,14 @@ function go(id){
     document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
     document.getElementById(id).classList.add('active');
 
-    if(id==="page3"){
-        drawTarot();
-    }
+    if(id==="page3") drawTarot();
 }
 
 // TAROT
 function drawTarot(){
-    let r = data[Math.floor(Math.random()*data.length)];
-
-    document.getElementById("img").src = r.img;
-    document.getElementById("msg").innerText = r.msg;
+    let r=data[Math.floor(Math.random()*data.length)];
+    document.getElementById("img").src=r.img;
+    document.getElementById("msg").innerText=r.msg;
 }
 
 </script>
